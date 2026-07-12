@@ -5,6 +5,8 @@ Required:
     - automation_account_name
     - name
     - password
+    - password_key_vault_id (alternative to password - read from Key Vault instead)
+    - password_key_vault_secret_name (alternative to password - read from Key Vault instead)
     - resource_group_name
     - username
 Optional:
@@ -12,12 +14,14 @@ Optional:
 EOT
 
   type = map(object({
-    automation_account_name = string
-    name                    = string
-    password                = string
-    resource_group_name     = string
-    username                = string
-    description             = optional(string)
+    automation_account_name        = string
+    name                           = string
+    password                       = string
+    password_key_vault_id          = optional(string)
+    password_key_vault_secret_name = optional(string)
+    resource_group_name            = string
+    username                       = string
+    description                    = optional(string)
   }))
   # --- Unconfirmed validation candidates, derived from azurerm_automation_credential's provider source ---
   # Not auto-enabled: either a bespoke provider validator we can't safely translate,
